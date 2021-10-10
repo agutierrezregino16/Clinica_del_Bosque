@@ -1,0 +1,135 @@
+.u-section-1 {
+  background-image: linear-gradient(white, #8ac9fe);
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 712px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  margin-top: 130px;
+  margin-bottom: 130px;
+}
+
+.u-section-1 .u-layout-cell-1 {
+  min-height: 570px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px 0;
+}
+
+.u-section-1 .u-image-1 {
+  width: 535px;
+  height: 290px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-layout-cell-2 {
+  min-height: 452px;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 30px;
+}
+
+.u-section-1 .u-text-1 {
+  font-family: Nunito;
+  margin: 20px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  margin: 20px 0 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-family: Nunito;
+}
+
+.u-section-1 .u-input-1 {
+  font-family: Nunito;
+}
+
+.u-section-1 .u-btn-1 {
+  border-style: solid;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: Nunito;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 541px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 470px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 465px;
+    height: 252px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 373px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 454px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 360px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 355px;
+    height: 192px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 697px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 540px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 538px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 340px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 340px;
+    height: 184px;
+  }
+
+  .u-section-1 .u-form-group-1 {
+    width: 100%;
+  }
+
+  .u-section-1 .u-form-group-2 {
+    width: 100%;
+  }
+}
