@@ -12,34 +12,29 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/Inicio.html')
-def inicio():
-    return render_template('Inicio.html')
+@app.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
 
 
-@app.route('/Quienes-somos.html')
-def acerca_de():
-    return render_template('Quienes-somos.html')
+@app.route('/contact-us')
+def contact_us():
+    return render_template('contact-us.html')
 
 
-@app.route('/Contacto.html')
-def contact():
-    return render_template('Contacto.html')
-
-
-@app.route('/Iniciar-sesión.html')
+@app.route('/login')
 def login():
-    return render_template('Iniciar-sesión.html')
+    return render_template('login.html')
 
 
-@app.route('/Registrarse.html')
-def registro():
-    return render_template('Registrarse.html')
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
-@app.route('/Olvido-la-contraseña.html')
+@app.route('/forgot-password')
 def forgot_password():
-    return render_template('Olvido-la-contraseña.html')
+    return render_template('forgot-password.html')
 
 
 if __name__ == '__main__':
