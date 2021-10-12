@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;">
+<html style="font-size: 16px;" lang="es">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -36,6 +36,9 @@
 <body data-home-page="index.html" data-home-page-title="Inicio" class="u-body">
 <!-- Header -->
 {% include '/template-parts/header.html' %}
+{% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+{% endfor %}
 <!-- Main content -->
 {% block content %}{% endblock %}
 <!-- Footer -->
