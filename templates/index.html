@@ -10,9 +10,9 @@
     <link rel="stylesheet" href={{ url_for('static', filename="css/nicepage.css") }} media="screen">
     <link rel="stylesheet" href={{ url_for('static', filename="css/Inicio.css") }} media="screen">
     <script class="u-script" type="text/javascript"
-            src={{ url_for('static', filename="js/jquery.js") }} defer=""></script>
+            src="{{ url_for('static', filename="js/jquery.js") }}" defer=""></script>
     <script class="u-script" type="text/javascript"
-            src={{ url_for('static', filename="js/nicepage.js") }} defer=""></script>
+            src="{{ url_for('static', filename="js/nicepage.js") }}" defer=""></script>
     <meta name="generator" content="Nicepage 3.27.0, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
@@ -34,8 +34,9 @@
 <body data-home-page="index.html" data-home-page-title="Inicio" class="u-body">
 <header class="u-clearfix u-header u-header" id="sec-f901">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512">
-            <img src={{ url_for('static', filename="images/cardiogram.png") }} class="u-logo-image u-logo-image-1">
+        <a href="{{ url_for('index') }}" class="u-image u-logo u-image-1" data-image-width="512"
+           data-image-height="512">
+            <img src="{{ url_for('static', filename="images/cardiogram.png") }}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
             <div class="menu-collapse u-custom-font"
@@ -77,13 +78,14 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.html"
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('index') }}"
                                                       style="padding: 10px 20px;">Inicio</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="about-us.html"
-                                                      style="padding: 10px 20px;">Quienes somos</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('about_us') }}"
+                                                      style="padding: 10px 20px;">Quiénes somos</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="contact-us.html"
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                      href="{{ url_for('contact_us') }}"
                                                       style="padding: 10px 20px;">Contacto</a>
                             </li>
                         </ul>
@@ -115,11 +117,11 @@
                 <ul class="u-custom-font u-nav u-unstyled u-nav-3">
                     <li class="u-nav-item"><a
                             class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                            href="login.html" style="padding: 10px 20px;">Iniciar sesión</a>
+                            href="{{ url_for('login') }}" style="padding: 10px 20px;">Iniciar sesión</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                            href="register.html" style="padding: 10px 20px;">Registrarse</a>
+                            href="{{ url_for('register') }}" style="padding: 10px 20px;">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -128,10 +130,10 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="login.html"
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('index') }}"
                                                       style="padding: 10px 20px;">Iniciar sesión</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="register.html"
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('register') }}"
                                                       style="padding: 10px 20px;">Registrarse</a>
                             </li>
                         </ul>
@@ -153,7 +155,7 @@
                             <h2 class="u-align-center u-custom-font u-text u-text-default u-text-1">Clínica del
                                 Bosque</h2>
                             <p class="u-align-center u-custom-font u-text u-text-2">Por lo menos hay salud.</p>
-                            <a href="register.html" data-page-id="499227451"
+                            <a href="{{ url_for('register') }}" data-page-id="499227451"
                                class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-custom-font u-radius-50 u-btn-1">Registrese
                                 ya!</a>
                         </div>
@@ -190,7 +192,7 @@
                             src={{ url_for('static', filename="images/hospital.png") }} alt=""></span>
                         <h3 class="u-custom-font u-text u-text-white u-text-3">Instalaciones</h3>
                         <p class="u-custom-font u-text u-text-white u-text-4"> La Clínica del Bosque cuenta con un
-                            sistema de salud bien estructurado, en materia de infraestructura y maquinas para darle la
+                            sistema de salud bien estructurado, en materia de infraestructura y máquinas para darle la
                             mejor atención a nuestro paciente&nbsp;</p>
                     </div>
                 </div>
@@ -235,7 +237,7 @@
                         <div class="u-container-layout u-container-layout-2">
                             <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="512"
                                data-image-height="512">
-                                <img src={{ url_for('static', filename="images/cardiogram.png") }} class="u-logo-image
+                                <img src="{{ url_for('static', filename="images/cardiogram.png") }}" class="u-logo-image
                                      u-logo-image-1">
                             </a>
                         </div>
