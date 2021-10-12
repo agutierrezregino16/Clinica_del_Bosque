@@ -2,7 +2,7 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="{{ url_for('index') }}" class="u-image u-logo u-image-1" data-image-width="512"
            data-image-height="512">
-            <img src={{ url_for('static', filename="images/cardiogram.png") }} class="u-logo-image u-logo-image-1">
+            <img src="{{ url_for('static', filename="images/cardiogram.png") }}" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
             <div class="menu-collapse u-custom-font"
@@ -82,11 +82,11 @@
                 <ul class="u-custom-font u-nav u-unstyled u-nav-3">
                     <li class="u-nav-item"><a
                             class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                            href="login.html" style="padding: 10px 20px;">Iniciar sesión</a>
+                            href="{{ url_for('login') }}" style="padding: 10px 20px;">Iniciar sesión</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                            href="register.html" style="padding: 10px 20px;">Registrarse</a>
+                            href="{{ url_for('register') }}" style="padding: 10px 20px;">Registrarse</a>
                     </li>
                 </ul>
             </div>
