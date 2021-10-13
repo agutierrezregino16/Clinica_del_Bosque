@@ -42,7 +42,8 @@ def login():
                 return render_template('login.html')
 
             if email == 'prueba@gmail.com' and password == 'Prueba123':  # Codigo de prueba login
-                return redirect('mensaje')  # Codigo de prueba login
+                # return redirect('mensaje')  # Codigo de prueba login
+                return render_template('dashboard.html')
             else:
                 error = 'Email o contraseña inválidos.'
                 flash(error)
@@ -87,6 +88,11 @@ def register():
 @app.route('/forgot-password')
 def forgot_password():
     return render_template('forgot-password.html')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 
 if __name__ == '__main__':
