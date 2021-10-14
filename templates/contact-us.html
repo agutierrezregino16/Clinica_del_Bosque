@@ -8,6 +8,9 @@
     <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-4596">
         <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-custom-font u-text u-text-default u-text-1">Contáctenos</h2>
+            {% for message in get_flashed_messages() %}
+                <div class="u-align-left" class="flash">{{ message }}</div>
+            {% endfor %}
             <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
                 <div class="u-layout">
                     <div class="u-layout-row">
@@ -47,7 +50,7 @@
                                             <a href="#"
                                                class="u-active-custom-color-2 u-border-2 u-border-black u-btn u-btn-submit u-button-style u-custom-font u-hover-custom-color-1 u-none u-text-black u-text-hover-white u-btn-1">enviar</a>
                                             <input type="submit" value="submit" class="u-form-control-hidden"
-                                                   autofocus="autofocus">
+                                            >
                                         </div>
                                         <div class="u-form-send-message u-form-send-success">Thank you! Your message has
                                             been sent.

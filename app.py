@@ -1,9 +1,7 @@
 import os
 import utils
 
-from flask import Flask, render_template, flash, request, redirect, jsonify
-
-from message import mensajes
+from flask import Flask, render_template, flash, request, redirect, url_for
 
 app = Flask(__name__)
 app.debug = True
@@ -20,9 +18,33 @@ def about_us():
     return render_template('about-us.html')
 
 
-@app.route('/contact-us')
+@app.route('/contact-us', methods=('GET', 'POST'))
 def contact_us():
-    return render_template('contact-us.html')
+    try:
+        if request.method == 'POST':
+            name = request.form['name']
+            email = request.form['email']
+            message = request.form['message']
+
+            if not name:
+                error = 'Debes ingresar tu nombre'
+                flash(error)
+                return render_template('contact-us.html')
+
+            if not email:
+                error = 'Debes ingresar tu email'
+                flash(error)
+                return render_template('contact-us.html')
+
+            if not message:
+                error = 'Debes ingresar tu mensaje'
+                flash(error)
+                return render_template('contact-us.html')
+
+        return render_template('contact-us.html')
+    except Exception as ex:
+        print(ex)
+        return render_template('contact-us.html')
 
 
 @app.route('/login', methods=('GET', 'POST'))
@@ -31,6 +53,7 @@ def login():
         if request.method == 'POST':
             email = request.form['email']
             password = request.form['password']
+
             if not email:
                 error = 'Debes ingresar un email'
                 flash(error)
@@ -43,21 +66,16 @@ def login():
 
             if email == 'prueba@gmail.com' and password == 'Prueba123':  # Codigo de prueba login
                 # return redirect('mensaje')  # Codigo de prueba login
-                return render_template('dashboard.html')
+                return redirect(url_for('dashboard'))
             else:
                 error = 'Email o contraseña inválidos.'
                 flash(error)
                 return render_template('login.html')
+
         return render_template('login.html')
     except Exception as ex:
         print(ex)
         return render_template('login.html')
-    return render_template('login.html')
-
-
-@app.route('/mensaje')  # Codigo de prueba login
-def message():  # Codigo de prueba login
-    return jsonify({'usuario': mensajes, 'mensaje': 'Mensajes'})
 
 
 @app.route('/register', methods=('GET', 'POST'))
@@ -82,15 +100,25 @@ def register():
     except Exception as e:
         print(e)
         return render_template('register.html')
-    return render_template('register.html')
 
 
-@app.route('/forgot-password')
+@app.route('/forgot-password', methods=('GET', 'POST'))
 def forgot_password():
-    return render_template('forgot-password.html')
+    try:
+        if request.method == 'POST':
+            email = request.form['email']
+            if not email:
+                error = 'Debes ingresar un email'
+                flash(error)
+                return render_template('forgot-password.html')
+
+        return render_template('forgot-password.html')
+    except Exception as e:
+        print(e)
+        return render_template('forgot-password.html')
 
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=('GET', 'POST'))
 def dashboard():
     return render_template('dashboard.html')
 
