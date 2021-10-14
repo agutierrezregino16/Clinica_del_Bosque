@@ -1,11 +1,19 @@
 {% extends "layout.html" %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} Dashboard {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href={{ url_for('static', filename="css/index.css") }} media="screen">
+    <link rel="stylesheet" href={{ url_for('static', filename="css/app.css") }} media="screen">
 {% endblock %}
 {% block content %}
     <!-- Contenido -->
+    <div class="sidebar">
+        <header>Dashboard</header>
+        <ul>
+            <li><a href="#"><i class="fas fa-user-md"></i>Médicos</a></li>
+            <li id="especial"><a href="#"><i class="fas fa-hospital-user"></i>Pacientes</a></li>
+            <li><a href="#"><i class="fas fa-calendar-check"></i>Citas</a></li>
+        </ul>
+    </div>
 
     <!-- Fin del contenido -->
 {% endblock %}
