@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} Iniciar sesión {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href="{{ url_for('static', filename="css/login.css") }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/login.css") }}"
+          media="screen">
 {% endblock %}
 {% block content %}
     <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-133c">
@@ -32,6 +33,9 @@
                                     </svg>
                             </span>
                                 <h3 class="u-custom-font u-text u-text-default u-text-1">Iniciar sesión</h3>
+                                {% for message in get_flashed_messages() %}
+                                    <div class="u-align-left" class="flash">{{ message }}</div>
+                                {% endfor %}
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
                                     <form action="#" method="POST"
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
