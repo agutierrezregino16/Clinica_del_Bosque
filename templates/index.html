@@ -2,7 +2,7 @@
 
 {% block title %} Inicio {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href={{ url_for('static', filename="css/index.css") }} media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/index.css") }}" media="screen">
 {% endblock %}
 {% block content %}
     <section class="u-clearfix u-gradient u-section-1" id="sec-7cd4">
@@ -10,25 +10,25 @@
             <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
                 <div class="u-layout" style="">
                     <div class="u-layout-row" style="">
-                        <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-layout-cell-1"
-                             src="">
+                        <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-layout-cell-1">
                             <div class="u-container-layout u-container-layout-1">
                                 <h2 class="u-align-center u-custom-font u-text u-text-default u-text-1">Clínica del
                                     Bosque</h2>
-                                <p class="u-align-center u-custom-font u-text u-text-2">Por lo menos hay salud.</p>
-                                <a href="register.html" data-page-id="499227451"
+                                <p class="u-align-center u-custom-font u-text u-text-2">Tu salud, nuestro
+                                    compromiso.</p>
+                                <a href="{{ url_for('register') }}" data-page-id="499227451"
                                    class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-custom-font u-radius-50 u-btn-1">Registrese
                                     ya!</a>
                             </div>
                         </div>
                         <div class="u-align-center u-container-style u-effect-hover-zoom u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2"
-                             src="" data-image-width="1345" data-image-height="943">
+                             data-image-width="1345" data-image-height="943">
                             <div class="u-background-effect u-expanded">
                                 <div class="u-background-effect-image u-expanded u-image u-image-1"
                                      data-image-width="1345"
                                      data-image-height="943"></div>
                             </div>
-                            <div class="u-container-layout u-valign-middle u-container-layout-2" src=""></div>
+                            <div class="u-container-layout u-valign-middle u-container-layout-2"></div>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                 <div class="u-repeater u-repeater-1">
                     <div class="u-align-center u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1"><span
-                                class="u-file-icon u-icon u-icon-circle u-icon-1"><img
-                                src={{ url_for('static', filename="images/diagnosis.png") }} alt=""></span>
+                                class="u-file-icon u-icon u-icon-circle u-icon-1">
+                            <img src="{{ url_for('static', filename="images/diagnosis.png") }}" alt=""></span>
                             <h3 class="u-custom-font u-text u-text-white u-text-1">Cuerpo médico</h3>
                             <p class="u-custom-font u-text u-text-white u-text-2"> Un grupo de doctores consolidados,
                                 dispuestos a prestar el mejor servicio para la salud de la población</p>
@@ -50,20 +50,22 @@
                     </div>
                     <div class="u-align-center u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2"><span
-                                class="u-file-icon u-icon u-icon-circle u-icon-2"><img
-                                src={{ url_for('static', filename="images/hospital.png") }} alt=""></span>
+                                class="u-file-icon u-icon u-icon-circle u-icon-2">
+                            <img src="{{ url_for('static', filename="images/hospital.png") }}" alt=""></span>
                             <h3 class="u-custom-font u-text u-text-white u-text-3">Instalaciones</h3>
                             <p class="u-custom-font u-text u-text-white u-text-4"> La Clínica del Bosque cuenta con un
-                                sistema de salud optimizado, en materia de infraestructura y equipos de alta tecnología para
+                                sistema de salud optimizado, en materia de infraestructura y equipos de alta tecnología
+                                para
                                 darle la mejor atención a nuestro paciente&nbsp;</p>
                         </div>
                     </div>
                     <div class="u-align-center u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3"><span
-                                class="u-file-icon u-icon u-icon-circle u-icon-3"><img
-                                src={{ url_for('static', filename="images/patient.png") }} alt=""></span>
+                                class="u-file-icon u-icon u-icon-circle u-icon-3">
+                            <img src="{{ url_for('static', filename="images/patient.png") }}" alt=""></span>
                             <h3 class="u-custom-font u-text u-text-white u-text-5">Atención</h3>
-                            <p class="u-custom-font u-text u-text-white u-text-6"> Nuestro equipo siempre esta dispuesto a
+                            <p class="u-custom-font u-text u-text-white u-text-6"> Nuestro equipo siempre esta dispuesto
+                                a
                                 todo, solo para que nuestros pacientes tengan el mejor estado de salud posible</p>
                         </div>
                     </div>

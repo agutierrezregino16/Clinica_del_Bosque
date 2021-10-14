@@ -9,7 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href={{ url_for('static', filename="css/nicepage.css") }} media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/nicepage.css") }}" media="screen">
     {% block stylesheet %}{% endblock %}
 
     <script class="u-script" type="text/javascript"
@@ -34,11 +34,15 @@
     <meta property="og:type" content="website">
 </head>
 <body data-home-page="index.html" data-home-page-title="Inicio" class="u-body">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <!-- Header -->
 {% include '/template-parts/header.html' %}
-{% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-{% endfor %}
 <!-- Main content -->
 {% block content %}{% endblock %}
 <!-- Footer -->

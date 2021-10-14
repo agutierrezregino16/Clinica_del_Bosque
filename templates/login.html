@@ -2,7 +2,7 @@
 
 {% block title %} Inicio {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href={{ url_for('static', filename="css/login.css") }} media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/login.css") }}" media="screen">
 {% endblock %}
 {% block content %}
     <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-133c">
@@ -11,23 +11,31 @@
                 <div class="u-layout">
                     <div class="u-layout-row">
                         <div class="u-align-center u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-1">
-                            <div class="u-container-layout u-container-layout-1"><span
-                                    class="u-icon u-icon-circle u-spacing-20 u-text-custom-color-2 u-white u-icon-1"><svg
-                                    class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512"
-                                    style=""><use
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-148b"></use></svg><svg
-                                    class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-148b"
-                                    style="enable-background:new 0 0 512 512;"><g><g><path
-                                    d="M256,0c-74.439,0-135,60.561-135,135s60.561,135,135,135s135-60.561,135-135S330.439,0,256,0z"></path>
-</g>
-</g><g><g><path d="M423.966,358.195C387.006,320.667,338.009,300,286,300h-60c-52.008,0-101.006,20.667-137.966,58.195    C51.255,395.539,31,444.833,31,497c0,8.284,6.716,15,15,15h420c8.284,0,15-6.716,15-15    C481,444.833,460.745,395.539,423.966,358.195z"></path>
-</g>
-</g></svg></span>
+                            <div class="u-container-layout u-container-layout-1">
+                                <span
+                                        class="u-icon u-icon-circle u-spacing-20 u-text-custom-color-2 u-white u-icon-1">
+                            <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style="">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-148b"></use>
+                            </svg>
+                                    <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-148b"
+                                         style="enable-background:new 0 0 512 512;">
+                                <g>
+                                    <g>
+                                        <path d="M256,0c-74.439,0-135,60.561-135,135s60.561,135,135,135s135-60.561,135-135S330.439,0,256,0z"></path>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M423.966,358.195C387.006,320.667,338.009,300,286,300h-60c-52.008,0-101.006,20.667-137.966,58.195    C51.255,395.539,31,444.833,31,497c0,8.284,6.716,15,15,15h420c8.284,0,15-6.716,15-15    C481,444.833,460.745,395.539,423.966,358.195z"></path>
+                                    </g>
+                                </g>
+                                    </svg>
+                            </span>
                                 <h3 class="u-custom-font u-text u-text-default u-text-1">Iniciar sesión</h3>
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
                                     <form action="#" method="POST"
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
-                                          source="custom" name="form-3" style="padding: 0px;">
+                                          name="form-3" style="">
                                         <div class="u-form-group u-form-name">
                                             <label for="email-5b0a"
                                                    class="u-custom-font u-form-control-hidden u-label u-label-1"></label>
@@ -56,10 +64,10 @@
                                         </div>
                                     </form>
                                 </div>
-                                <a href="forgot-password.html" data-page-id="131609198"
+                                <a href="{{ url_for('forgot_password') }}" data-page-id="131609198"
                                    class="u-border-1 u-border-active-palette-2-base u-border-hover-custom-color-1 u-btn u-button-style u-custom-font u-login-control u-login-forgot-password u-none u-text-palette-1-base u-btn-2">Olvidó
                                     su contraseña?</a>
-                                <a href="register.html" data-page-id="499227451"
+                                <a href="{{ url_for('register') }}" data-page-id="499227451"
                                    class="u-border-1 u-border-active-palette-2-base u-border-hover-custom-color-1 u-btn u-button-style u-custom-font u-login-control u-login-create-account u-none u-text-palette-1-base u-btn-3">No
                                     tienes una creada una cuenta?</a>
                             </div>

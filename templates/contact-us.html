@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
-{% block title %} Inicio {% endblock %}
+{% block title %} Contáctenos {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href={{ url_for('static', filename="css/contact-us.css") }} media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/contact-us.css") }}" media="screen">
 {% endblock %}
 {% block content %}
     <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-4596">
@@ -14,8 +14,8 @@
                         <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
                             <div class="u-container-layout u-valign-middle u-container-layout-1">
                                 <img class="u-image u-image-default u-preserve-proportions u-image-1"
-                                     src={{ url_for('static', filename="images/prescription.png") }} alt=""
-                                     data-image-width="512" data-image-height="512">
+                                     src="{{ url_for('static', filename="images/prescription.png") }}"
+                                     data-image-width="512" data-image-height="512" alt="">
                             </div>
                         </div>
                         <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
@@ -23,27 +23,25 @@
                                 <div class="u-form u-form-1">
                                     <form action="#" method="POST"
                                           class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-                                          style="padding: 10px" source="custom" name="form-1">
+                                          style="padding: 10px" name="form-1">
                                         <div class="u-form-group u-form-name u-form-group-1">
                                             <label for="name-c359" class="u-form-control-hidden u-label">Name</label>
                                             <input type="text" placeholder="Nombre" id="name-c359" name="name"
-                                                   class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-1"
-                                                   required="">
+                                                   class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-1">
                                         </div>
                                         <div class="u-form-email u-form-group u-form-group-2">
                                             <label for="email-c359" class="u-form-control-hidden u-label">Email</label>
                                             <input type="email" placeholder="Correo electrónico" id="email-c359"
                                                    name="email"
-                                                   class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-2"
-                                                   required="">
+                                                   class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-2">
                                         </div>
                                         <div class="u-form-group u-form-message u-form-group-3">
                                             <label for="message-c359"
                                                    class="u-form-control-hidden u-label">Address</label>
                                             <textarea placeholder="Mensaje" rows="4" cols="50" id="message-c359"
                                                       name="message"
-                                                      class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-3"
-                                                      required=""></textarea>
+                                                      class="u-border-1 u-border-black u-custom-font u-input u-input-rectangle u-radius-13 u-input-3">
+                                            </textarea>
                                         </div>
                                         <div class="u-form-group u-form-submit u-form-group-4">
                                             <a href="#"
@@ -54,10 +52,6 @@
                                         <div class="u-form-send-message u-form-send-success">Thank you! Your message has
                                             been sent.
                                         </div>
-                                        <div class="u-form-send-error u-form-send-message">Unable to send your message.
-                                            Please fix errors then try again.
-                                        </div>
-                                        <input type="hidden" value="" name="recaptchaResponse">
                                     </form>
                                 </div>
                             </div>
