@@ -2,7 +2,6 @@
 
 {% block title %} Dashboard {% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href={{ url_for('static', filename="css/app.css") }} media="screen">
 {% endblock %}
 {% block content %}
     <!-- Contenido -->
@@ -13,6 +12,106 @@
             <li id="especial"><a href="#"><i class="fas fa-hospital-user"></i>Pacientes</a></li>
             <li><a href="#"><i class="fas fa-calendar-check"></i>Citas</a></li>
         </ul>
+    </div>
+
+    <div class="main">
+        <!-- Tabla -->
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-sm-6 mb-2">
+                    <div class="card">
+                        <div class="card flex-row flex-wrap">
+                            <div class="card-header border-0">
+                                <img src="//placehold.it/150" alt="">
+                            </div>
+                            <div class="card-block px-2">
+                                <h4 class="card-title">12 Médicos</h4>
+                            </div>
+                            <div class="w-100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-2">
+                    <div class="card">
+                        <div class="card flex-row flex-wrap">
+                            <div class="card-header border-0">
+                                <img src="//placehold.it/150" alt="">
+                            </div>
+                            <div class="card-block px-2">
+                                <h4 class="card-title">60 Pacientes</h4>
+                            </div>
+                            <div class="w-100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-2">
+                    <div class="card">
+                        <div class="card flex-row flex-wrap">
+                            <div class="card-header border-0">
+                                <img src="//placehold.it/150" alt="">
+                            </div>
+                            <div class="card-block px-2">
+                                <h4 class="card-title">99+ Citas</h4>
+                            </div>
+                            <div class="w-100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-2">
+                    <div class="card">
+                        <div class="card flex-row flex-wrap">
+                            <div class="card-header border-0">
+                                <img src="//placehold.it/150" alt="">
+                            </div>
+                            <div class="card-block px-2">
+                                <h4 class="card-title">4.5/5 Calificación</h4>
+                            </div>
+                            <div class="w-100"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Últimas citas
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">id paciente</th>
+                                    <th scope="col">Id doctor</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Comentario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Utilizar receta médica</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>Agendar cita de control para ...</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry the Bird</td>
+                                    <td>Mike Raul</td>
+                                    <td>Debe aumentar el cinsumo de ...</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Fin del contenido -->

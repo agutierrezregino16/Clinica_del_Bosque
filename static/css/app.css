@@ -5,9 +5,12 @@
 }
 
 .sidebar {
+    position: absolute;
+    top: 86px;
     width: 240px;
     left: 0px;
-    height: 400px;
+    /*height: 400px;*/
+    height: calc(100% - 86px);
     background: #8ac9fe;
     transition: all .5s ease;
 }
@@ -51,3 +54,10 @@ ul {
     padding-left: 0;
 }
 
+.sidebar + .main + footer {
+    display: none;
+}
+
+.sidebar + .main {
+    margin-left: 240px;
+}
