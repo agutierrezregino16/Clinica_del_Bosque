@@ -34,7 +34,7 @@
                             </span>
                                 <h3 class="u-custom-font u-text u-text-default u-text-1">Iniciar sesión</h3>
                                 {% for message in get_flashed_messages() %}
-                                    <div class="u-align-left" class="flash">{{ message }}</div>
+                                    <div class="alert alert-danger u-align-left" role="alert">{{ message }}</div>
                                 {% endfor %}
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
                                     <form action="#" method="POST"
