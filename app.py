@@ -123,5 +123,20 @@ def dashboard():
     return render_template('dashboard.html')
 
 
+@app.route('/doctors', methods=('GET', 'POST'))
+def doctors():
+    return render_template('doctors.html')
+
+
+@app.route('/patients', methods=('GET', 'POST'))
+def patients():
+    return render_template('patients.html')
+
+
+@app.route('/appointments', methods=('GET', 'POST'))
+def appointments():
+    return render_template('appointments.html')
+
+
 if __name__ == '__main__':
     app.run()

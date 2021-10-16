@@ -1,18 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %} Dashboard {% endblock %}
-{% block stylesheet %}
-{% endblock %}
+
 {% block content %}
     <!-- Contenido -->
-    <div class="sidebar">
-        <header>Dashboard</header>
-        <ul>
-            <li><a href="#"><i class="fas fa-user-md"></i>Médicos</a></li>
-            <li id="especial"><a href="#"><i class="fas fa-hospital-user"></i>Pacientes</a></li>
-            <li><a href="#"><i class="fas fa-calendar-check"></i>Citas</a></li>
-        </ul>
-    </div>
+
+    {% include '/template-parts/sidebar.html' %}
 
     <div class="main">
         <!-- Tabla -->
