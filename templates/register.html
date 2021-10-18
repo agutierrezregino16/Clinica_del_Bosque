@@ -29,7 +29,7 @@
                                     <div class="alert alert-danger u-align-left" role="alert">{{ message }}</div>
                                 {% endfor %}
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
-                                    <form action="#" method="POST"
+                                    <form action="{{ url_for('register') }}" method="POST"
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
                                           source="custom" name="form-3" style="padding: 0px;">
                                         <div class="u-form-group u-form-name">
@@ -57,16 +57,16 @@
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-3">
                                         </div>
                                         <div class="u-form-group u-form-select u-form-group-4">
-                                            <label for="select-f4ae" class="u-custom-font u-label u-label-4">Seleccione
+                                            <label for="id_type" class="u-custom-font u-label u-label-4">Seleccione
                                                 su tipo de documento</label>
                                             <div class="u-form-select-wrapper">
-                                                <select id="select-f4ae" name="select"
+                                                <select id="id_type" name="id_type"
                                                         class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-4"
-                                                        required="required">
-                                                    <option value="Tipo de documento...">Tipo de documento...</option>
-                                                    <option value="Tarjeta de identidad">Tarjeta de identidad</option>
-                                                    <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
-                                                    <option value="Cédula de extranjería">Cédula de extranjería</option>
+                                                >
+                                                    <option value="">Tipo de documento...</option>
+                                                    <option value="TI">Tarjeta de identidad</option>
+                                                    <option value="CC">Cédula de ciudadanía</option>
+                                                    <option value="CE">Cédula de extranjería</option>
                                                 </select>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12"
                                                      class="u-caret">
@@ -75,23 +75,23 @@
                                             </div>
                                         </div>
                                         <div class="u-form-group u-form-name">
-                                            <label for="numero_id"
+                                            <label for="id_number"
                                                    class="u-custom-font u-form u-label u-label-5">Ingrese su número de
                                                 documento</label>
-                                            <input type="text" placeholder="Nº de documento" id="numero_id"
-                                                   name="numero_id"
+                                            <input type="text" placeholder="Nº de documento" id="id_number"
+                                                   name="id_number"
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-5">
                                         </div>
                                         <div class="u-form-group u-form-select u-form-group-6">
-                                            <label for="select-85c4"
+                                            <label for="sex"
                                                    class="u-custom-font u-label u-label-6">Sexo</label>
                                             <div class="u-form-select-wrapper">
-                                                <select id="select-85c4" name="select-1"
+                                                <select id="sex" name="sex"
                                                         class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-6"
-                                                        required="required">
-                                                    <option value="Sexo...">Sexo...</option>
-                                                    <option value="Másculino">Másculino</option>
-                                                    <option value="Femenino">Femenino</option>
+                                                >
+                                                    <option value="">Sexo...</option>
+                                                    <option value="M">Másculino</option>
+                                                    <option value="F">Femenino</option>
                                                 </select>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12"
                                                      class="u-caret">
@@ -100,11 +100,12 @@
                                             </div>
                                         </div>
                                         <div class="u-form-date u-form-group u-form-group-7">
-                                            <label for="date-b217" class="u-custom-font u-label u-label-7">Fecha de
+                                            <label for="birth_date" class="u-custom-font u-label u-label-7">Fecha de
                                                 nacimiento</label>
-                                            <input type="date" placeholder="MM/DD/YYYY" id="date-b217"
-                                                   name="Fecha_de_nacimiento"
-                                                   class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-7">
+                                            <input type="date" placeholder="MM/DD/YYYY" id="birth_date"
+                                                   name="birth_date"
+                                                   class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-7"
+                                            >
                                         </div>
                                         <div class="u-form-group u-form-name">
                                             <label for="address"
@@ -123,11 +124,11 @@
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-9">
                                         </div>
                                         <div class="u-form-group u-form-name">
-                                            <label for="numero_telefono"
+                                            <label for="phone_number"
                                                    class="u-custom-font u-form u-label u-label-10">Ingrese su número de
                                                 teléfono</label>
-                                            <input type="text" placeholder="Nº de teléfono" id="numero_telefono"
-                                                   name="numero_telefono"
+                                            <input type="text" placeholder="Nº de teléfono" id="phone_number"
+                                                   name="phone_number"
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-10">
                                         </div>
                                         <div class="u-form-agree u-form-group u-form-group-11">

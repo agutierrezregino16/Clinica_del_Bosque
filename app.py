@@ -1,6 +1,8 @@
 import os
 import utils
 
+from db import get_db
+
 from flask import Flask, render_template, flash, request, redirect, url_for
 
 app = Flask(__name__)
@@ -64,13 +66,15 @@ def login():
                 flash(error)
                 return render_template('login.html')
 
-            if email == 'prueba@gmail.com' and password == 'Prueba123':  # Codigo de prueba login
-                # return redirect('mensaje')  # Codigo de prueba login
-                return redirect(url_for('dashboard'))
-            else:
-                error = 'Email o contraseña inválidos.'
+            db = get_db()
+            email = db.execute('SELECT * FROM users WHERE email= ? AND password= ?',
+                               (email, password)).fetchone()
+
+            if email is None:
+                error = 'Correo o contraseña inválidos'
                 flash(error)
-                return render_template('login.html')
+            else:
+                return redirect('dashboard')
 
         return render_template('login.html')
     except Exception as ex:
@@ -85,6 +89,14 @@ def register():
 
             password = request.form['password']
             email = request.form['email']
+            name = request.form['name']
+            id_type = request.form['id_type']
+            id_number = request.form['id_number']
+            sex = request.form['sex']
+            birth_date = request.form['birth_date']
+            address = request.form['address']
+            city = request.form['city']
+            phone_number = request.form['phone_number']
 
             if not utils.isEmailValid(email):
                 error = "El email no es valido"
@@ -96,10 +108,59 @@ def register():
                 flash(error)
                 return render_template('register.html')
 
+            if not utils.isNameValid(name):
+                error = "Su nombre no es válido"
+                flash(error)
+                return render_template('register.html')
+
+            if id_type == "":
+                error = "Debe seleccionar un tipo de documento"
+                flash(error)
+                return render_template('register.html')
+
+            if not utils.isId_NumberValid(id_number):
+                error = "Su número de documento no es válido"
+                flash(error)
+                return render_template('register.html')
+
+            if sex == "":
+                error = "Debe seleccionar un sexo"
+                flash(error)
+                return render_template('register.html')
+
+            if birth_date == "":
+                error = "Debe ingresar su fecha de nacimiento"
+                flash(error)
+                return render_template('register.html')
+
+            if not utils.isAddressValid(address):
+                error = "Su dirección no es válida"
+                flash(error)
+                return render_template('register.html')
+
+            if not utils.isNameValid(city):
+                error = "Debe ingresar su ciudad"
+                flash(error)
+                return render_template('register.html')
+
+            if not utils.isPhone_numberValid(phone_number):
+                error = "Su número de telefono no es válido"
+                flash(error)
+                return render_template('register.html')
+
+            db = get_db()
+            db.execute(
+                "INSERT INTO users (email, password, name, id_type, id_number, sex, birth_date, address, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (email, password, name, id_type, id_number, sex, birth_date, address, city, phone_number))
+            db.commit()
+
+            return redirect(url_for('login'))
+
         return render_template('register.html')
     except Exception as e:
+        print('2')
         print(e)
-        return render_template('register.html')
+        return redirect(url_for('login'))
 
 
 @app.route('/forgot-password', methods=('GET', 'POST'))

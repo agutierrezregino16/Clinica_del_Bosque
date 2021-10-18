@@ -37,7 +37,7 @@
                                     <div class="alert alert-danger u-align-left" role="alert">{{ message }}</div>
                                 {% endfor %}
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
-                                    <form action="#" method="POST"
+                                    <form action="{{ url_for('login') }}" method="POST"
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
                                           name="form-3" style="">
                                         <div class="u-form-group u-form-name">
