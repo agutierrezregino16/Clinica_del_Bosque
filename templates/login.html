@@ -33,9 +33,12 @@
                                     </svg>
                             </span>
                                 <h3 class="u-custom-font u-text u-text-default u-text-1">Iniciar sesión</h3>
-                                {% for message in get_flashed_messages() %}
-                                    <div class="alert alert-danger u-align-left" role="alert">{{ message }}</div>
-                                {% endfor %}
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                    {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }} u-align-left"
+                                             role="alert">{{ message }}</div>
+                                    {% endfor %}
+                                {% endwith %}
                                 <div class="u-expanded-width-xs u-form u-login-control u-form-1">
                                     <form action="{{ url_for('login') }}" method="POST"
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"

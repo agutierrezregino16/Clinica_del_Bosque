@@ -33,37 +33,45 @@
                                           class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
                                           source="custom" name="form-3" style="padding: 0px;">
                                         <div class="u-form-group u-form-name">
+                                            <label for="first_name" class="u-custom-font u-form u-label u-label-3">Escriba
+                                                su
+                                                nombre</label>
+                                            <input type="text" id="first_name" name="first_name"
+                                                   placeholder="Introduzca su nombre"
+                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-3">
+                                        </div>
+                                        <div class="u-form-group u-form-name">
+                                            <label for="last_name" class="u-custom-font u-form u-label u-label-3">Escriba
+                                                su
+                                                apellido</label>
+                                            <input type="text" id="last_name" name="last_name"
+                                                   placeholder="Introduzca su apellido"
+                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-3">
+                                        </div>
+                                        <div class="u-form-group u-form-name">
                                             <label for="email-5b0a"
                                                    class="u-custom-font u-form u-label u-label-1">Ingrese un correo
                                                 electrónico</label>
                                             <input type="text" placeholder="Introduzca un correo electrónico válido"
-                                                   id="email-5b0a"
                                                    name="email"
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-1">
                                         </div>
-                                        <div class="u-form-group u-form-password">
-                                            <label for="password-5b0a"
-                                                   class="u-custom-font u-form u-label u-label-2">Escriba una
-                                                contraseña</label>
-                                            <input type="password" placeholder="Ingrese una contraseña válida"
-                                                   id="password-5b0a"
-                                                   name="password"
-                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-2">
-                                        </div>
                                         <div class="u-form-group u-form-name">
-                                            <label for="name" class="u-custom-font u-form u-label u-label-3">Escriba su
-                                                nombre</label>
-                                            <input type="text" id="name" name="name" placeholder="Introduzca su nombre"
-                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-3">
+                                            <label for="phone"
+                                                   class="u-custom-font u-form u-label u-label-10">Ingrese su número de
+                                                teléfono</label>
+                                            <input type="text" placeholder="Nº de teléfono" id="phone"
+                                                   name="phone"
+                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-10">
                                         </div>
                                         <div class="u-form-group u-form-select u-form-group-4">
-                                            <label for="id_type" class="u-custom-font u-label u-label-4">Seleccione
+                                            <label for="document_type" class="u-custom-font u-label u-label-4">Seleccione
                                                 su tipo de documento</label>
                                             <div class="u-form-select-wrapper">
-                                                <select id="id_type" name="id_type"
+                                                <select id="document_type" name="document_type"
                                                         class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-4"
                                                 >
-                                                    <option value="">Tipo de documento...</option>
+                                                    <option value="">--- Elija una opción ---</option>
                                                     <option value="TI">Tarjeta de identidad</option>
                                                     <option value="CC">Cédula de ciudadanía</option>
                                                     <option value="CE">Cédula de extranjería</option>
@@ -75,21 +83,21 @@
                                             </div>
                                         </div>
                                         <div class="u-form-group u-form-name">
-                                            <label for="id_number"
+                                            <label for="document_number"
                                                    class="u-custom-font u-form u-label u-label-5">Ingrese su número de
                                                 documento</label>
-                                            <input type="text" placeholder="Nº de documento" id="id_number"
-                                                   name="id_number"
+                                            <input type="text" placeholder="Nº de documento" id="document_number"
+                                                   name="document_number"
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-5">
                                         </div>
                                         <div class="u-form-group u-form-select u-form-group-6">
-                                            <label for="sex"
-                                                   class="u-custom-font u-label u-label-6">Sexo</label>
+                                            <label for="gender"
+                                                   class="u-custom-font u-label u-label-6">Género</label>
                                             <div class="u-form-select-wrapper">
-                                                <select id="sex" name="sex"
+                                                <select id="gender" name="gender"
                                                         class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-6"
                                                 >
-                                                    <option value="">Sexo...</option>
+                                                    <option value="">--- Elija una opción ---</option>
                                                     <option value="M">Másculino</option>
                                                     <option value="F">Femenino</option>
                                                 </select>
@@ -99,37 +107,21 @@
                                                 </svg>
                                             </div>
                                         </div>
-                                        <div class="u-form-date u-form-group u-form-group-7">
-                                            <label for="birth_date" class="u-custom-font u-label u-label-7">Fecha de
-                                                nacimiento</label>
-                                            <input type="date" placeholder="MM/DD/YYYY" id="birth_date"
-                                                   name="birth_date"
-                                                   class="u-border-1 u-border-custom-color-1 u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-7"
-                                            >
-                                        </div>
                                         <div class="u-form-group u-form-name">
                                             <label for="address"
                                                    class="u-custom-font u-form u-label u-label-8">Ingrese su
-                                                direccion</label>
-                                            <input type="text" placeholder="Direccion de residencia" id="address"
+                                                dirección</label>
+                                            <input type="text" placeholder="Dirección de residencia" id="address"
                                                    name="address"
                                                    class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-8">
                                         </div>
-                                        <div class="u-form-group u-form-name">
-                                            <label for="city"
-                                                   class="u-custom-font u-form u-label u-label-9">Ingrese su
-                                                ciudad</label>
-                                            <input type="text" placeholder="Ciudad de residencia" id="city"
-                                                   name="city"
-                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-9">
-                                        </div>
-                                        <div class="u-form-group u-form-name">
-                                            <label for="phone_number"
-                                                   class="u-custom-font u-form u-label u-label-10">Ingrese su número de
-                                                teléfono</label>
-                                            <input type="text" placeholder="Nº de teléfono" id="phone_number"
-                                                   name="phone_number"
-                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-10">
+                                        <div class="u-form-group u-form-password">
+                                            <label for="password"
+                                                   class="u-custom-font u-form u-label u-label-2">Escriba una
+                                                contraseña</label>
+                                            <input type="password" placeholder="Ingrese una contraseña válida"
+                                                   name="password"
+                                                   class="u-border-2 u-border-white u-custom-font u-input u-input-rectangle u-radius-43 u-white u-input-2">
                                         </div>
                                         <div class="u-form-agree u-form-group u-form-group-11">
                                             <input type="checkbox" id="agree-d98b" name="agree" class="u-agree-checkbox"

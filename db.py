@@ -6,7 +6,7 @@ from flask import g
 def get_db():
     try:
         if 'db' not in g:
-            g.db = sqlite3.connect('Prueba_database.db')
+            g.db = sqlite3.connect('hospital.db')
         return g.db
     except Error:
         print(Error)

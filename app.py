@@ -59,12 +59,12 @@ def login():
 
             if not email:
                 error = 'Debes ingresar un email'
-                flash(error)
+                flash(error, "danger")
                 return render_template('login.html')
 
             if not password:
                 error = 'Debes ingresar una contraseña'
-                flash(error)
+                flash(error, "danger")
                 return render_template('login.html')
 
             db = get_db()
@@ -73,13 +73,13 @@ def login():
             if user is None:
                 error = 'El usuario no existe'
             else:
-                store_password = user[2]
+                store_password = user[9]
                 result = check_password_hash(store_password, password)
                 if result is False:
                     error = 'Usuario o contraseña inválidos'
                 else:
                     return redirect('dashboard')
-            flash(error)
+            flash(error, "danger")
 
         return render_template('login.html')
     except Exception as ex:
@@ -91,81 +91,81 @@ def login():
 def register():
     try:
         if request.method == 'POST':
-
-            password = request.form['password']
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
             email = request.form['email']
-            name = request.form['name']
-            id_type = request.form['id_type']
-            id_number = request.form['id_number']
-            sex = request.form['sex']
-            birth_date = request.form['birth_date']
+            phone = request.form['phone']
+            document_type = request.form['document_type']
+            document_number = request.form['document_number']
+            gender = request.form['gender']
             address = request.form['address']
-            city = request.form['city']
-            phone_number = request.form['phone_number']
+            password = request.form['password']
+
+            """"Asignamos el rol 3 automáticamente, este es el rol paciente.
+            Todos los usuarios que se registren por este formulario serán asignados como pacientes"""
+            role = 3
+
+            """Asignamos 1 como estado por defecto. Este representa el estado Activo """
+            status = 1
+
+            # Validaciones
+            if not utils.isNameValid(first_name):
+                error = "El nombre no es válido"
+                flash(error)
+                return render_template('register.html')
+
+            if not utils.isNameValid(last_name):
+                error = "El apellido no es válido"
+                flash(error)
+                return render_template('register.html')
 
             if not utils.isEmailValid(email):
                 error = "El email no es valido"
                 flash(error)
                 return render_template('register.html')
 
-            if not utils.isPasswordValid(password):
-                error = "El password no es valido"
+            if not utils.isPhone_numberValid(phone):
+                error = "El número de telefono no es válido"
                 flash(error)
                 return render_template('register.html')
 
-            if not utils.isNameValid(name):
-                error = "Su nombre no es válido"
-                flash(error)
-                return render_template('register.html')
-
-            if id_type == "":
+            if document_type == "":
                 error = "Debe seleccionar un tipo de documento"
                 flash(error)
                 return render_template('register.html')
 
-            if not utils.isId_NumberValid(id_number):
-                error = "Su número de documento no es válido"
+            if not utils.isId_NumberValid(document_number):
+                error = "El número de documento no es válido"
                 flash(error)
                 return render_template('register.html')
 
-            if sex == "":
-                error = "Debe seleccionar un sexo"
-                flash(error)
-                return render_template('register.html')
-
-            if birth_date == "":
-                error = "Debe ingresar su fecha de nacimiento"
+            if gender == "":
+                error = "Debe seleccionar un género"
                 flash(error)
                 return render_template('register.html')
 
             if not utils.isAddressValid(address):
-                error = "Su dirección no es válida"
+                error = "La dirección no es válida"
                 flash(error)
                 return render_template('register.html')
 
-            if not utils.isNameValid(city):
-                error = "Debe ingresar su ciudad"
-                flash(error)
-                return render_template('register.html')
-
-            if not utils.isPhone_numberValid(phone_number):
-                error = "Su número de telefono no es válido"
+            if not utils.isPasswordValid(password):
+                error = "La contraseña debe tener al menos 8 dígitos y tener un número, una mayúscula y un caracter especial"
                 flash(error)
                 return render_template('register.html')
 
             db = get_db()
             db.execute(
-                "INSERT INTO users (email, password, name, id_type, id_number, sex, birth_date, address, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (email, generate_password_hash(password), name, id_type, id_number, sex, birth_date, address, city,
-                 phone_number))
+                "INSERT INTO users (first_name, last_name, email, phone, document_type, document_number, gender, address, password, role, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (first_name, last_name, email, phone, document_type, document_number, gender, address,
+                 generate_password_hash(password), role, status))
             db.commit()
-
+            flash("Registro exitoso, por favor inicie sesión", "success")
             return redirect(url_for('login'))
 
         return render_template('register.html')
     except Exception as e:
-        print('2')
-        print(e)
+        print(f'Ha ocurrido el siguitente error: {e}')
         return redirect(url_for('login'))
 
 
