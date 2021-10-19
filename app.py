@@ -4,6 +4,7 @@ import utils
 from db import get_db
 
 from flask import Flask, render_template, flash, request, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.debug = True
@@ -67,14 +68,18 @@ def login():
                 return render_template('login.html')
 
             db = get_db()
-            email = db.execute('SELECT * FROM users WHERE email= ? AND password= ?',
-                               (email, password)).fetchone()
+            user = db.execute('SELECT * FROM users WHERE email= ?', (email,)).fetchone()
 
-            if email is None:
-                error = 'Correo o contraseña inválidos'
-                flash(error)
+            if user is None:
+                error = 'El usuario no existe'
             else:
-                return redirect('dashboard')
+                store_password = user[2]
+                result = check_password_hash(store_password, password)
+                if result is False:
+                    error = 'Usuario o contraseña inválidos'
+                else:
+                    return redirect('dashboard')
+            flash(error)
 
         return render_template('login.html')
     except Exception as ex:
@@ -151,7 +156,8 @@ def register():
             db = get_db()
             db.execute(
                 "INSERT INTO users (email, password, name, id_type, id_number, sex, birth_date, address, city, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (email, password, name, id_type, id_number, sex, birth_date, address, city, phone_number))
+                (email, generate_password_hash(password), name, id_type, id_number, sex, birth_date, address, city,
+                 phone_number))
             db.commit()
 
             return redirect(url_for('login'))
