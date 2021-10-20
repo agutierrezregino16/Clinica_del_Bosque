@@ -2,7 +2,7 @@ import re
 from validate_email import validate_email
 
 pass_regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$"
-name_regex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+name_regex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z*])*$"
 id_regex = "([0-9]+){7,}$"
 phone_number_regex = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
 address_regex = "^[#.0-9a-zA-Z\s,-]+$"

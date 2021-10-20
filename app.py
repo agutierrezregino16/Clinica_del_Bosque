@@ -1,9 +1,10 @@
+import functools
 import os
 import utils
 
 from db import get_db
 
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, session, g, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -78,7 +79,11 @@ def login():
                 if result is False:
                     error = 'Usuario o contraseña inválidos'
                 else:
-                    return redirect('dashboard')
+                    session.clear()
+                    session['user_id'] = user[0]
+                    resp = make_response(redirect(url_for('dashboard')))
+                    resp.set_cookie('username', email)
+                    return resp
             flash(error, "danger")
 
         return render_template('login.html')
@@ -185,24 +190,54 @@ def forgot_password():
         return render_template('forgot-password.html')
 
 
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('login'))
+        return view(**kwargs)
+
+    return wrapped_view
+
+
 @app.route('/dashboard', methods=('GET', 'POST'))
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
 
 @app.route('/doctors', methods=('GET', 'POST'))
+@login_required
 def doctors():
     return render_template('doctors.html')
 
 
 @app.route('/patients', methods=('GET', 'POST'))
+@login_required
 def patients():
     return render_template('patients.html')
 
 
 @app.route('/appointments', methods=('GET', 'POST'))
+@login_required
 def appointments():
     return render_template('appointments.html')
+
+
+@app.before_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        db = get_db()
+        g.user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
