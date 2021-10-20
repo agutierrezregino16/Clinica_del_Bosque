@@ -59,5 +59,18 @@ ul {
 }
 
 .sidebar + .main {
-    margin-left: 240px;
+    margin-left: 300px;
 }
+
+.sidebar + .main h1 {
+    color: #28377a;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sidebar + .main h2 {
+    color: #28377a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
