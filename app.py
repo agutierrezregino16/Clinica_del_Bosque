@@ -170,7 +170,7 @@ def register():
 
         return render_template('register.html')
     except Exception as e:
-        print(f'Ha ocurrido el siguitente error: {e}')
+        print(f'Ha ocurrido el siguiente error: {e}')
         return redirect(url_for('login'))
 
 
