@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %} My profile {% endblock %}
+
+{% block content %}
+    <!-- Contenido -->
+
+    {% include '/template-parts/sidebar.html' %}
+
+    <div class="main">
+        <div class="card">
+            <div class="card-header">
+                <h2>Datos Personales</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered border-secondary">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Tipo de Documento</th>
+                        <th scope="col">N° de documento</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">N° de Teléfono</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ g.user[1] }}</td>
+                        <td>{{ g.user[2] }}</td>
+                        <td>{{ g.user[5] }}</td>
+                        <td>{{ g.user[6] }}</td>
+                        <td>{{ g.user[7] }}</td>
+                        <td>{{ g.user[3] }}</td>
+                        <td>{{ g.user[8] }}</td>
+                        <td>{{ g.user[4] }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin del contenido -->
+{% endblock %}

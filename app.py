@@ -81,7 +81,7 @@ def login():
                 else:
                     session.clear()
                     session['user_id'] = user[0]
-                    resp = make_response(redirect(url_for('dashboard')))
+                    resp = make_response(redirect(url_for('profile')))
                     resp.set_cookie('username', email)
                     return resp
             flash(error, "danger")
@@ -232,6 +232,12 @@ def load_logged_in_user():
     else:
         db = get_db()
         g.user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+
+
+@app.route('/profile', methods=('GET', 'POST'))
+@login_required
+def profile():
+    return render_template('profile.html')
 
 
 @app.route('/logout')

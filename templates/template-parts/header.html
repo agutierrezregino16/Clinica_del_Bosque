@@ -94,7 +94,7 @@
                     {% else %}
                         <li class="u-nav-item"><a
                                 class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                                href="#" style="padding: 10px 20px;">Hola, {{ g.user[1] }}</a>
+                                href="{{ url_for('dashboard') }}" style="padding: 10px 20px;">Hola, {{ g.user[1] }}</a>
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
