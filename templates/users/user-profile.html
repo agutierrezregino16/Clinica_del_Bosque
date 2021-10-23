@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %} Lista de usuarios {% endblock %}
+
+{% block content %}
+    <!-- Contenido -->
+
+    {% include '/template-parts/sidebar.html' %}
+
+    <div class="main">
+        <form action="{{ url_for('get_user', id=user[0]) }}" method="post">
+            <div class="col border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Perfil de {{ user[1] }}</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="labels">Nombre</label>
+                            <input type="text" class="form-control" name="first_name" value="{{ user[1] }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Apellidos</label>
+                            <input type="text" class="form-control" name="last_name" value="{{ user[2] }}">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Email</label>
+                            <input type="email" class="form-control" name="email" value="{{ user[3] }}">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Nº de teléfono</label>
+                            <input type="text" class="form-control" name="phone" value="{{ user[4] }}">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="phone_number">Tipo de documento</label>
+                            <select class="form-select" id="phone_number" name="document_type">
+                                <option value="TI" {{ 'selected' if user[5] == 'TI' }}>Tarjeta de identidad</option>
+                                <option value="CC" {{ 'selected' if user[5] == 'CC' }}>Cédula de ciudadanía</option>
+                                <option value="CE" {{ 'selected' if user[5] == 'CE' }}>Cédula de extranjería</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Nº de documento</label>
+                        <input type="text" class="form-control" name="document_number" value="{{ user[6] }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="gender">Género</label>
+                        <select class="form-select" id="gender" name="gender">
+                            <option value="M" {{ 'selected' if user[7] == 'M' }}>Másculino</option>
+                            <option value="F" {{ 'selected' if user[7] == 'F' }}>Femenino</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Dirección</label>
+                        <input type="text" class="form-control" name="address" value="{{ user [8] }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="role">Rol</label>
+                        <select class="form-select" id="role" name="role" aria-label="Default select example">
+                            <option value="3" {{ 'selected' if user[9] == 3 }}>Paciente</option>
+                            <option value="2" {{ 'selected' if user[9] == 2 }}>Médico</option>
+                            <option value="1" {{ 'selected' if user[9] == 1 }}>Admin</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="role">Estado</label>
+                        <select class="form-select" id="role" name="status" aria-label="Default select example">
+                            <option value="0" {{ 'selected' if user[10] == 0 }}>Inactivo</option>
+                            <option value="1" {{ 'selected' if user[10] == 1 }}>Activo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" type="submit">Actualizar usuario</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Fin del contenido -->
+{% endblock %}

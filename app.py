@@ -332,6 +332,65 @@ def create_user():
     return render_template('/users/create-user.html')
 
 
+@app.route('/users/<id>', methods=('GET', 'POST'))
+@login_required
+def get_user(id):
+    try:
+        if request.method == 'GET':
+            db = get_db()
+            user = db.execute(
+                'SELECT id, first_name, last_name, email, phone, document_type, document_number, gender, address, role, status FROM users WHERE id = ?',
+                (id,)).fetchone()
+
+            if user:
+                return render_template('/users/user-profile.html', user=user)
+
+            flash("No se encontro el usuario con id " + id, "danger")
+
+        if request.method == 'POST':
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
+            email = request.form['email']
+            phone = request.form['phone']
+            document_type = request.form['document_type']
+            document_number = request.form['document_number']
+            gender = request.form['gender']
+            address = request.form['address']
+            role = request.form['role']
+            status = request.form['status']
+
+            # Agregar validaciones
+
+            db = get_db()
+            db.execute(
+                'UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, document_type = ?, document_number = ?, gender = ?, address = ?, role = ?, status = ? WHERE id = ?',
+                (first_name, last_name, email, phone, document_type, document_number, gender, address, role, status,
+                 id))
+            db.commit()
+            flash('Se actualizaron los datos correctamente', "success")
+    except Exception as e:
+        flash(f'Ha ocurrido el siguiente error: {e}', "danger")
+        return redirect(url_for('all_users'))
+
+    return redirect(url_for('all_users'))
+
+
+@app.route('/delete-user/<id>', methods=['POST'])
+def delete_user(id):
+    try:
+        db = get_db()
+        db.execute(
+            'DELETE FROM users WHERE id = ?', (id,))
+        db.commit()
+        flash('Se ha eliminado el usuario de la base de datos', "success")
+
+    except Exception as e:
+        flash(f'Ha ocurrido el siguiente error: {e}', "danger")
+        return redirect(url_for('all_users'))
+
+    return redirect(url_for('all_users'))
+
+
 @app.route('/logout')
 def logout():
     session.clear()
