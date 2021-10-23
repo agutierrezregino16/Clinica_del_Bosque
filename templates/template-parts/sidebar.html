@@ -6,6 +6,7 @@
             <li><a href="{{ url_for('doctors') }}"><i class="fas fa-user-md"></i>Médicos</a></li>
             <li><a href="{{ url_for('patients') }}"><i class="fas fa-hospital-user"></i>Pacientes</a></li>
             <li><a href="{{ url_for('appointments') }}"><i class="fas fa-calendar-check"></i>Citas</a></li>
+            <li><a href="{{ url_for('all_users') }}"><i class="fas fa-user"></i>Gestión de usuarios</a></li>
         {% elif g.user[10] == 2 %}
             <li><a href="{{ url_for('patients') }}"><i class="fas fa-hospital-user"></i>Mis pacientes</a></li>
             <li><a href="{{ url_for('appointments') }}"><i class="fas fa-calendar-check"></i>Mis Citas</a></li>

@@ -240,6 +240,98 @@ def profile():
     return render_template('profile.html')
 
 
+@app.route('/all-users')
+@login_required
+def all_users():
+    db = get_db()
+    users = db.execute(
+        'SELECT id, first_name, last_name, document_type, document_number, role, status  FROM users').fetchall()
+    users = list(users)
+
+    # Por corregir
+    for user in users:
+        for d in user:
+            if user.index(d) == 5:
+                print(d)
+    return render_template('/users/all-users.html', users=users)
+
+
+@app.route('/create-user', methods=('GET', 'POST'))
+@login_required
+def create_user():
+    try:
+        if request.method == 'POST':
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
+            email = request.form['email']
+            phone = request.form['phone']
+            document_type = request.form['document_type']
+            document_number = request.form['document_number']
+            gender = request.form['gender']
+            address = request.form['address']
+            password = request.form['password']
+            role = request.form['role']
+
+            """Asignamos 1 como estado por defecto. Este representa el estado Activo """
+            status = 1
+
+            # Validaciones
+            if not utils.isNameValid(first_name):
+                error = "El nombre no es válido"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isNameValid(last_name):
+                error = "El apellido no es válido"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isEmailValid(email):
+                error = "El email no es valido"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isPhone_numberValid(phone):
+                error = "El número de telefono no es válido"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isId_NumberValid(document_number):
+                error = "El número de documento no es válido"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if gender == "":
+                error = "Debe seleccionar un género"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isAddressValid(address):
+                error = "La dirección no es válida"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            if not utils.isPasswordValid(password):
+                error = "La contraseña debe tener al menos 8 dígitos y tener un número, una mayúscula y un caracter especial"
+                flash(error)
+                return render_template('/users/create-user.html')
+
+            db = get_db()
+            db.execute(
+                "INSERT INTO users (first_name, last_name, email, phone, document_type, document_number, gender, address, password, role, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (first_name, last_name, email, phone, document_type, document_number, gender, address,
+                 generate_password_hash(password), role, status))
+            db.commit()
+            flash("Registro exitoso", "success")
+            return redirect(url_for('all_users'))
+
+        return render_template('/users/create-user.html')
+    except Exception as e:
+        print(f'Ha ocurrido el siguiente error: {e}')
+        return redirect(url_for('create_user'))
+    return render_template('/users/create-user.html')
+
+
 @app.route('/logout')
 def logout():
     session.clear()
