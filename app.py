@@ -203,7 +203,27 @@ def login_required(view):
 @app.route('/dashboard', methods=('GET', 'POST'))
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    try:
+        db = get_db()
+        doctor = db.execute('SELECT count(role) FROM users where role = 2').fetchone()[0]
+        db.commit()
+
+        db = get_db()
+        patient = db.execute('SELECT count(role) FROM users where role = 3').fetchone()[0]
+        db.commit()
+
+        db = get_db()
+        appointment = db.execute('SELECT count(id) FROM appointments where status = 2').fetchone()[0]
+        db.commit()
+
+        db = get_db()
+        avg = db.execute('SELECT AVG(rate) FROM appointments').fetchone()[0]
+        db.commit()
+
+        return render_template('dashboard.html', doctor=doctor, patient=patient, appointment=appointment, avg=avg)
+    except Exception as e:
+        print(e)
+        return render_template('dashboard.html')
 
 
 @app.route('/doctors', methods=('GET', 'POST'))
