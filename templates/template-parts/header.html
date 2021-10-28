@@ -92,13 +92,14 @@
                                 href="{{ url_for('register') }}" style="padding: 10px 20px;">Registrarse</a>
                         </li>
                     {% else %}
-                        <li class="u-nav-item"><a
-                                class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                                href="{{ url_for('dashboard') }}" style="padding: 10px 20px;">Hola, {{ g.user[1] }}</a>
-                        </li>
-                        <li class="u-nav-item"><a
-                                class="u-active-custom-color-2 u-button-style u-hover-custom-color-1 u-nav-link u-text-active-black u-text-hover-white"
-                                href="{{ url_for('logout') }}" style="padding: 10px 20px;">Cerrar sesión</a>
+                        <li class="u-nav-item nav-item dropdown">
+                            <a class="u-button-style u-nav-link nav-link dropdown-toggle" href="#"
+                               data-toggle="dropdown"
+                               style="padding: 10px 20px;">Hola, {{ g.user[1] }}</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url_for('dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar sesión</a>
+                            </div>
                         </li>
                     {% endif %}
                 </ul>
