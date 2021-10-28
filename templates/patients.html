@@ -5,86 +5,87 @@
 {% block content %}
     {% include '/template-parts/sidebar.html' %}
     <div class="main">
-        <h1>Ingrese ID del Paciente</h1>
+        <div class="container">
+            <h1>Ingrese ID del Paciente</h1>
 
-        <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">ID paciente</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                Listado de Pacientes
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered border-secondary">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID Paciente</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Fecha de Nacimiento</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>05/06/1989</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>06/25/1996</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>Mike Raul</td>
-                        <td>18/02/1981</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-success">Detalles</button>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">ID paciente</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword">
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <h2>Datos Personales</h2>
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Listado de Pacientes
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered border-secondary">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID Paciente</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Fecha de Nacimiento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>05/06/1989</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>06/25/1996</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry the Bird</td>
+                            <td>Mike Raul</td>
+                            <td>18/02/1981</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-success">Detalles</button>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <table class="table table-bordered border-secondary">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">N° de documento</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>48284597</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-secondary">Citas Médicas</button>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Datos Personales</h2>
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-warning">Editar Información</button>
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-danger">Eliminar Paciente</button>
+                <div class="card-body">
+                    <table class="table table-bordered border-secondary">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">N° de documento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>48284597</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary">Citas Médicas</button>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-warning">Editar Información</button>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-danger">Eliminar Paciente</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
