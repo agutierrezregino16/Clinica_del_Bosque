@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %} Citas {% endblock %}
+
+{% block content %}
+    {% include '/template-parts/sidebar.html' %}
+    <div class="main">
+        <div class="container">
+            <h1 style="display: inline">Lista de citas</h1>
+            <a href="{{ url_for('create_appointment') }}" class="btn btn-primary"><i class="fas fa-calendar-check"></i>
+            </a>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} u-align-left"
+                         role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Paciente</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Comentario</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <form method="post" action="{{ url_for('delete_appointment', id=appointment[0]) }}">
+                            <!-- Id del doctor -->
+                            <td>{{ appointment[1] }}</td>
+                            <!-- Id del paciente -->
+                            <td>{{ appointment[2] }}</td>
+                            <!-- Fecha -->
+                            <td>{{ appointment[3] }}</td>
+                            <!-- Comentario -->
+                            <td>{{ "-" if ( appointment[4] is none ) else appointment[4] }}</td>
+                            <!-- Estado -->
+                            {% if appointment[5] == 1 %}
+                                <td><span class="badge badge-warning">Pendiente</span></td>
+                            {% elif appointment[5] == 2 %}
+                                <td><span class="badge badge-success">Completada</span></td>
+                            {% elif appointment[5] == 3 %}
+                                <td><span class="badge badge-danger">Cancelado</span></td>
+                            {% endif %}
+                            <!-- Opciones -->
+                            <td>
+                                <a href="{{ url_for('get_appointment', id=appointment[0]) }}">
+                                    <i class="far fa-eye"></i>
+                                </a>
+                                <button type="submit" class="text-danger btn ml-3">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

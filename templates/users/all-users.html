@@ -52,7 +52,11 @@
                                 <td>Paciente</td>
                             {% endif %}
                             <!-- Estado -->
-                            <td>{{ user[6] }}</td>
+                            {% if user[6] == 1 %}
+                                <td>Activo</td>
+                            {% elif user[6] == 0 %}
+                                <td>Inactivo</td>
+                            {% endif %}
                             <!-- Opciones -->
                             <td>
                                 <a href="{{ url_for('get_user', id=user[0]) }}">

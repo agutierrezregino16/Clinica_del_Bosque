@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %} Información de la cita {% endblock %}
+
+{% block content %}
+    {% include '/template-parts/sidebar.html' %}
+
+    <div class="main">
+        <!-- Contenido -->
+        <div class="container">
+            <form action="{{ url_for('get_appointment', id=appointment[0]) }}" method="post">
+                <h4 class="">Cita #{{ appointment[0] }}</h4>
+                {% for message in get_flashed_messages() %}
+                    <div class="alert alert-danger u-align-left" role="alert">{{ message }}</div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="doctor_id">Nombre del doctor</label>
+                    <select class="form-control" id="doctor_id" name="doctor_id">
+                        {% for doctor in doctors %}
+                            <option value="{{ doctor[0] }}" {{ 'selected' if appointment[1] == doctor[0] }}>{{ doctor[1] }} {{ doctor[2] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patient_id">Nombre del paciente</label>
+                    <select class="form-control" id="patient_id" name="patient_id">
+                        {% for patient in patients %}
+                            <option value="{{ patient[0] }}" {{ 'selected' if appointment[2] == patient[0] }}>{{ patient[1] }} {{ patient[2] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha de la cita:</label>
+                    <input class="form-control" type="date" id="date" name="date_appointment"
+                           value="{{ appointment[3] }}">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comentario</label>
+                    <textarea class="form-control" rows="3"
+                              name="comment">{{ "-" if ( appointment[4] is none ) else appointment[4] }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rate">Calificación</label>
+                    <input type="number" class="form-control" id="rate" name="rate"
+                           value="{{ "" if ( appointment[5] is none ) else appointment[5] }}">
+                </div>
+                <div class="form-group">
+                    <label for="feedback">Retroalimentación</label>
+                    <textarea class="form-control" rows="3"
+                              name="feedback">{{ "-" if ( appointment[6] is none ) else appointment[6] }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="status">Estado</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="1" {{ 'selected' if appointment[7] == 1 }}>Pendiente</option>
+                        <option value="2" {{ 'selected' if appointment[7] == 2 }}>Completada</option>
+                        <option value="3" {{ 'selected' if appointment[7] == 3 }}>Cancelada</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mt-2" type="submit">Actualizar</button>
+            </form>
+        </div>
+        <!-- Fin del contenido -->
+    </div>
+{% endblock %}

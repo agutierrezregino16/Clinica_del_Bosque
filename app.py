@@ -238,12 +238,6 @@ def patients():
     return render_template('patients.html')
 
 
-@app.route('/appointments', methods=('GET', 'POST'))
-# @login_required
-def appointments():
-    return render_template('appointments.html')
-
-
 @app.before_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -268,11 +262,6 @@ def all_users():
         'SELECT id, first_name, last_name, document_type, document_number, role, status  FROM users').fetchall()
     users = list(users)
 
-    # Por corregir
-    for user in users:
-        for d in user:
-            if user.index(d) == 5:
-                print(d)
     return render_template('/users/all-users.html', users=users)
 
 
@@ -412,8 +401,20 @@ def delete_user(id):
     return redirect(url_for('all_users'))
 
 
+@app.route('/all-appointments', methods=('GET', 'POST'))
+@login_required
+def all_appointments():
+    db = get_db()
+    appointments = db.execute(
+        "SELECT a.id, d.first_name, p.first_name, a.date_appointment, a.comment, a.status FROM appointments a LEFT JOIN users d ON a.doctor_id = d.id LEFT JOIN users p ON a.patient_id = p.id").fetchall()
+
+    appointments = list(appointments)
+
+    return render_template('/appointments/all-appointments.html', appointments=appointments)
+
+
 @app.route('/create-appointment', methods=('GET', 'POST'))
-# @login_required
+@login_required
 def create_appointment():
     try:
         if request.method == 'POST':
@@ -459,33 +460,46 @@ def get_appointment(id):
         if request.method == 'GET':
             db = get_db()
             appointment = db.execute(
-                'SELECT id, doctor_id, patient_id, date_appointment, rate, feedback, status FROM appointments WHERE id = ?',
+                'SELECT * FROM appointments WHERE id = ?',
                 (id,)).fetchone()
 
-            if appointment:
-                return render_template('/users/user-profile.html', appointment=appointment)
+            doctors = db.execute('SELECT id, first_name, last_name FROM users where role = 2').fetchall()
 
-            flash("No se encontro el usuario con id " + id, "danger")
+            patients = db.execute('SELECT id, first_name, last_name FROM users where role = 3').fetchall()
+            db.commit()
+
+            '''doctor = db.execute('SELECT first_name, last_name FROM users WHERE id=?', (appointment[1],)).fetchone()
+            patient = db.execute('SELECT first_name, last_name FROM users WHERE id=?', (appointment[2],)).fetchone()'''
+            if appointment:
+                return render_template('/appointments/appointment-profile.html', appointment=appointment,
+                                       doctors=doctors,
+                                       patients=patients)
+
+            flash("No se encontro la cita con id " + id, "danger")
 
         if request.method == 'POST':
             doctor_id = request.form['doctor_id']
             patient_id = request.form['patient_id']
-            date = request.form['date']
+            date_appointment = request.form['date_appointment']
+            comment = request.form['comment']
+            rate = request.form['rate']
+            feedback = request.form['feedback']
+            status = request.form['status']
 
             # Agregar validaciones
 
             db = get_db()
             db.execute(
-                'UPDATE appointments SET doctor_id = ?, patient_id = ?, date_appointment = ?, rate = ?, feedback = ?, status = ? WHERE id = ?',
-                (doctor_id, patient_id, date,
+                'UPDATE appointments SET doctor_id = ?, patient_id = ?, date_appointment = ?, comment = ?, rate = ?, feedback = ?, status = ? WHERE id = ?',
+                (doctor_id, patient_id, date_appointment, comment, rate, feedback, status,
                  id))
             db.commit()
             flash('Se actualizaron los datos correctamente', "success")
     except Exception as e:
         flash(f'Ha ocurrido el siguiente error: {e}', "danger")
-        return redirect(url_for('all_users'))
+        return redirect(url_for('all_appointments'))
 
-    return redirect(url_for('all_users'))
+    return redirect(url_for('all_appointments'))
 
 
 @app.route('/delete-appointment/<id>', methods=['POST'])
@@ -496,13 +510,13 @@ def delete_appointment(id):
         db.execute(
             'DELETE FROM appointments WHERE id = ?', (id,))
         db.commit()
-        flash('Se ha eliminado el usuario de la base de datos', "success")
+        flash('Se ha eliminado la cita de la base de datos', "success")
 
     except Exception as e:
         flash(f'Ha ocurrido el siguiente error: {e}', "danger")
-        return redirect(url_for('all_users'))
+        return redirect(url_for('all_appointments'))
 
-    return redirect(url_for('all_users'))
+    return redirect(url_for('all_appointments'))
 
 
 @app.route('/logout')
