@@ -239,7 +239,7 @@ def patients():
 
 
 @app.route('/appointments', methods=('GET', 'POST'))
-@login_required
+# @login_required
 def appointments():
     return render_template('appointments.html')
 
@@ -396,11 +396,105 @@ def get_user(id):
 
 
 @app.route('/delete-user/<id>', methods=['POST'])
+@login_required
 def delete_user(id):
     try:
         db = get_db()
         db.execute(
             'DELETE FROM users WHERE id = ?', (id,))
+        db.commit()
+        flash('Se ha eliminado el usuario de la base de datos', "success")
+
+    except Exception as e:
+        flash(f'Ha ocurrido el siguiente error: {e}', "danger")
+        return redirect(url_for('all_users'))
+
+    return redirect(url_for('all_users'))
+
+
+@app.route('/create-appointment', methods=('GET', 'POST'))
+# @login_required
+def create_appointment():
+    try:
+        if request.method == 'POST':
+            doctor_id = request.form['doctor_id']
+            patient_id = request.form['patient_id']
+            date = request.form['date']
+
+            """Asignamos 1 como estado por defecto. Este representa el estado Pendiente """
+            status = 1
+
+            # Validaciones
+
+            if date == "":
+                error = "La fecha escogida no es valida"
+                flash(error)
+                return redirect(url_for('create_appointment'))
+
+            db = get_db()
+            db.execute(
+                "INSERT INTO appointments (doctor_id, patient_id, date_appointment, status) VALUES (?, ?, ?, ?)",
+                (doctor_id, patient_id, date, status))
+            db.commit()
+            flash("Registro exitoso", "success")
+            return redirect(url_for('appointments'))
+
+        db = get_db()
+        doctors = db.execute('SELECT id, first_name, last_name FROM users where role = 2').fetchall()
+
+        patients = db.execute('SELECT id, first_name, last_name FROM users where role = 3').fetchall()
+        db.commit()
+
+        return render_template('/appointments/create-appointment.html', doctors=doctors, patients=patients)
+    except Exception as e:
+        print(f'Ha ocurrido el siguiente error: {e}')
+        return redirect(url_for('appointments'))
+    return render_template('/appointments/create-appointment.html')
+
+
+@app.route('/appointments/<id>', methods=('GET', 'POST'))
+@login_required
+def get_appointment(id):
+    try:
+        if request.method == 'GET':
+            db = get_db()
+            appointment = db.execute(
+                'SELECT id, doctor_id, patient_id, date_appointment, rate, feedback, status FROM appointments WHERE id = ?',
+                (id,)).fetchone()
+
+            if appointment:
+                return render_template('/users/user-profile.html', appointment=appointment)
+
+            flash("No se encontro el usuario con id " + id, "danger")
+
+        if request.method == 'POST':
+            doctor_id = request.form['doctor_id']
+            patient_id = request.form['patient_id']
+            date = request.form['date']
+
+            # Agregar validaciones
+
+            db = get_db()
+            db.execute(
+                'UPDATE appointments SET doctor_id = ?, patient_id = ?, date_appointment = ?, rate = ?, feedback = ?, status = ? WHERE id = ?',
+                (doctor_id, patient_id, date,
+                 id))
+            db.commit()
+            flash('Se actualizaron los datos correctamente', "success")
+    except Exception as e:
+        flash(f'Ha ocurrido el siguiente error: {e}', "danger")
+        return redirect(url_for('all_users'))
+
+    return redirect(url_for('all_users'))
+
+
+@app.route('/delete-appointment/<id>', methods=['POST'])
+@login_required
+def delete_appointment(id):
+    try:
+        db = get_db()
+        db.execute(
+            'DELETE FROM appointments WHERE id = ?', (id,))
         db.commit()
         flash('Se ha eliminado el usuario de la base de datos', "success")
 
